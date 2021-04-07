@@ -9,7 +9,7 @@ body {
     transform: translate(-50%, -50%);
     width: 900px;
     height: 600px;
-    background-image: url(./images/game_background_2.png);
+    background-image: url(./images/gameBackground.jpg);
     background-size: cover;
     font-family: 'Orbitron', sans-serif;
 }
