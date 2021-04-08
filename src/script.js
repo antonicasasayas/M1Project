@@ -1,30 +1,20 @@
-const canvas = document.getElementById("canvas1");
-const ctx = canvas.getContext("2d");
-canvas.width = 900;
-canvas.height = 600;
+/*
+
 
 // global variables
-const cellSize = 75;
-const cellGap = 3;
-let numberOfResources = 300;
-let enemiesInterval = 600;
-let frame = 0;
-let gameOver = false;
-let chosenDefender = 1;
-const gameGrid = [];
-const defenders = [];
-const enemies = [];
-const projectiles = [];
-const resources = [];
 
-// mouse
-const mouse = {
-  x: 10,
-  y: 10,
-  width: 0.1,
-  height: 0.1,
-  clicked: false,
-};
+
+
+
+
+
+
+
+
+
+
+
+
 
 window.addEventListener("mousedown", function () {
   mouse.clicked = true;
@@ -451,20 +441,8 @@ function handleGameStatus() {
   
 }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(gameBoard, 0, 500, 900, 100);
-  handleGameGrid();
-  handleDefenders();
-  handleProjectiles();
-  handleEnemies();
-  chooseDefender();
-  handleGameStatus();
 
-  frame++;
-  if (!gameOver) requestAnimationFrame(animate);
-}
-animate();
+
 
 function collision(first, second) {
   if (
@@ -481,4 +459,4 @@ function collision(first, second) {
 
 window.addEventListener("resize", function () {
   canvasPosition = canvas.getBoundingClientRect();
-});
+});*/

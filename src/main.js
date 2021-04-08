@@ -19,7 +19,7 @@ function buildDom(htmlString) {
 function createSplashScreen() {
   //para un correcto tabulado del string, tabular de la línea 2 hasta el final
   splashScreen = buildDom(`
-      <main>
+      <main class = "pepe">
         <h1>Eternal Enemies</h1>
         <button>Start</button>
       </main>
@@ -49,13 +49,10 @@ function createGameScreen() {
                 <span class="label">Lives:</span>
                 <span class="value"></span>
             </div>
-            <div class="score">
-                <span class="label">Score:</span>
-                <span class="value"></span>
-            </div>
+            
         </header>
         <div class="canvas-container">
-            <canvas></canvas>
+            <canvas id = "canvas1"></canvas>
         </div>
     </main>
     `);
@@ -105,3 +102,4 @@ function endGame(score) {
 }
 
 window.addEventListener("load", createSplashScreen);
+

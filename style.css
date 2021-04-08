@@ -1,3 +1,8 @@
+@font-face{
+  font-family: glaive;
+  src: url(/fonts/FontsFree-Net-GlaiveRegular.ttf)
+}
+
 body {
     background: black;
     overflow: hidden;
@@ -32,4 +37,22 @@ footer, article {
 }
 footer a{
   color: gold;
+}
+
+.pepe{
+  
+  background-image: url(./images/gameBackground.jpg);
+  background-size: cover;
+  width: 900px;
+  height: 600px;
+}
+
+.pablo{
+  background-image: url(./images/button_play.png);
+  
+
+}
+
+.pepe h1{
+  font-family: glaive;
 }
