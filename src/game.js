@@ -277,7 +277,7 @@ class Game {
         removeGameScreen();
         createGameOverScreen();
       }
-      
+      console.log(this.frame)
       this.frame++;
       if (!this.gameOver) requestAnimationFrame(loop);
     };

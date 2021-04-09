@@ -12,6 +12,8 @@ enemyTypes.push(enemy3);
 const enemy4 = new Image();
 enemy4.src = "./images/littleEnemy.png";
 enemyTypes.push(enemy4);
+const enemy5 = new Image();
+enemy5.src = "./images/boss.png"
 
 class Enemy {
     constructor(canvas, cellSize, cellGap, frame) {
@@ -39,11 +41,17 @@ class Enemy {
         this.spriteWidth = 396;
         this.spriteHeight = 406;
         this.speed = 0.4 + 0.0001 * frame;
-      } else {
+      } else if (this.enemyType === enemyTypes[3]){
         this.health = 100+0.02*frame;
         this.spriteWidth = 292;
         this.spriteHeight = 248;
         this.speed = 1 + 0.0001*frame;
+      } else {
+        this.health = 2000
+        this.spriteWidth = 1100;
+        this.spriteHeight = 1100;
+        this.speed = 0.3;
+        this.maxFrame = 18;
       }
       this.movement = this.speed;
       this.maxHealth = this.health;
@@ -86,7 +94,7 @@ class Enemy {
     if (this.frameX < this.maxFrame) this.frameX += 1;
     else this.frameX = this.minFrame;
   }
-  draw() {
+  draw(frame) {
     this.ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
     this.ctx.drawImage(
       this.enemyType,
@@ -99,5 +107,8 @@ class Enemy {
       this.width,
       this.height
     );
+    
+    
   }
+  
 }
