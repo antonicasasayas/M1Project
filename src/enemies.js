@@ -28,22 +28,22 @@ class Enemy {
         this.health = 150+0.02*frame;
         this.spriteWidth = 377;
         this.spriteHeight = 404;
-        this.speed =  0.8;
+        this.speed = 0.8 + 0.0001 * frame;
       } else if (this.enemyType === enemyTypes[1]) {
         this.health = 200+0.02*frame;
         this.spriteWidth = 445;
         this.spriteHeight = 469;
-        this.speed = 0.6;
+        this.speed = 0.6 + 0.0001 * frame;
       } else if (this.enemyType === enemyTypes[2]) {
         this.health = 250+0.02*frame;
         this.spriteWidth = 396;
         this.spriteHeight = 406;
-        this.speed = 0.4;
+        this.speed = 0.4 + 0.0001 * frame;
       } else {
         this.health = 100+0.02*frame;
         this.spriteWidth = 292;
         this.spriteHeight = 248;
-        this.speed = 1;
+        this.speed = 1 + 0.0001*frame;
       }
       this.movement = this.speed;
       this.maxHealth = this.health;

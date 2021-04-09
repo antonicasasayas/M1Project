@@ -45,10 +45,7 @@ function createGameScreen() {
   gameScreen = buildDom(`
     <main class="game container">
         <header>
-            <div class="lives">
-                <span class="label">Lives:</span>
-                <span class="value"></span>
-            </div>
+            
             
         </header>
         <div class="canvas-container">

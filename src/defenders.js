@@ -20,13 +20,13 @@ class Projectile {
     this.width = 40;
     this.height = 40;
     if (chosenDefender === 1) {
-      this.power = 35; 
+      this.power = 25; 
     } else if (chosenDefender === 2) {
-      this.power = 5
+      this.power = 4
     } else if (chosenDefender === 3) {
-      this.power = 100
+      this.power = 80
     } else if (chosenDefender === 4) {
-      this.power = 150
+      this.power = 120
     } this.speed = 5;
     this.direction = direction;
     this.chosenDefender = chosenDefender;
@@ -45,9 +45,21 @@ class Projectile {
   }
   draw() {
     if (this.direction === "up" && this.chosenDefender === 1) {
-      this.ctx.drawImage(projectile2, this.x, this.y - 50, this.width, this.height);
+      this.ctx.drawImage(
+        projectile2,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
     } else if (this.direction === "right" && this.chosenDefender === 1) {
-      this.ctx.drawImage(projectile1, this.x, this.y - 50, this.width, this.height);
+      this.ctx.drawImage(
+        projectile1,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
     } else if (this.direction === "up" && this.chosenDefender === 2) {
       this.ctx.drawImage(
         magicProjectile,
@@ -57,7 +69,7 @@ class Projectile {
         this.height
       );
     } else if (this.direction === "right" && this.chosenDefender === 2) {
-     this.ctx.drawImage(
+      this.ctx.drawImage(
         magicProjectile,
         this.x,
         this.y - 50,
@@ -65,7 +77,7 @@ class Projectile {
         this.height
       );
     } else if (this.chosenDefender === 3 && this.direction === "up") {
-     this.ctx.drawImage(
+      this.ctx.drawImage(
         fireProjectile,
         this.x,
         this.y - 50,
@@ -73,7 +85,7 @@ class Projectile {
         this.height
       );
     } else if (this.chosenDefender === 3 && this.direction === "right") {
-     this.ctx.drawImage(
+      this.ctx.drawImage(
         fireProjectile,
         this.x,
         this.y - 50,
@@ -81,7 +93,7 @@ class Projectile {
         this.height
       );
     } else if (this.chosenDefender === 4 && this.direction === "up") {
-     this.ctx.drawImage(
+      this.ctx.drawImage(
         stoneProjectile,
         this.x,
         this.y - 50,
@@ -89,14 +101,78 @@ class Projectile {
         this.height
       );
     } else if (this.chosenDefender === 4 && this.direction === "right") {
-     this.ctx.drawImage(
+      this.ctx.drawImage(
         stoneProjectile,
         this.x,
         this.y - 50,
         this.width,
         this.height
       );
-    }
+    } else if (this.chosenDefender === 4 && this.direction === "down") {
+      this.ctx.drawImage(
+        stoneProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 4 && this.direction === "left") {
+      this.ctx.drawImage(
+        stoneProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 3 && this.direction === "down") {
+      this.ctx.drawImage(
+        fireProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 3 && this.direction === "left") {
+      this.ctx.drawImage(
+        fireProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 2 && this.direction === "down") {
+      this.ctx.drawImage(
+        magicProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 2 && this.direction === "left") {
+      this.ctx.drawImage(
+        magicProjectile,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 1 && this.direction === "left") {
+      this.ctx.drawImage(
+        projectile1,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } else if (this.chosenDefender === 1 && this.direction === "down") {
+      this.ctx.drawImage(
+        projectile1,
+        this.x,
+        this.y - 50,
+        this.width,
+        this.height
+      );
+    } 
   }
 }
 
@@ -141,6 +217,7 @@ class Defender {
     }
   }
   update(projectiles) {
+    console.log(this.down)
     if (this.vertical) {
       if (!this.shooting && !this.down && !this.left) {
         this.timer += 1;
@@ -202,7 +279,7 @@ class Defender {
         projectiles.push(
           new Projectile(
             this.canvas,
-            this.x + 70,
+            this.x + 35,
             this.y + 50,
             "down",
             this.chosenDefender
@@ -213,7 +290,7 @@ class Defender {
         projectiles.push(
           new Projectile(
             this.canvas,
-            this.x + 70,
+            this.x ,
             this.y + 50,
             "down",
             this.chosenDefender
@@ -224,7 +301,7 @@ class Defender {
         projectiles.push(
           new Projectile(
             this.canvas,
-            this.x + 70,
+            this.x -50,
             this.y + 50,
             "down",
             this.chosenDefender
@@ -238,6 +315,54 @@ class Defender {
             this.x + 70,
             this.y + 50,
             "down",
+            this.chosenDefender
+          )
+        );
+      }
+    }
+    if (this.left) {
+      this.timer++;
+
+      if (this.timer % 20 === 0 && this.chosenDefender === 2) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "left",
+            this.chosenDefender
+          )
+        );
+      }
+      if (this.timer % 50 === 0 && this.chosenDefender === 1) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "left",
+            this.chosenDefender
+          )
+        );
+      }
+      if (this.timer % 70 === 0 && this.chosenDefender === 3) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "left",
+            this.chosenDefender
+          )
+        );
+      }
+      if (this.timer % 100 === 0 && this.chosenDefender === 4) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "left",
             this.chosenDefender
           )
         );

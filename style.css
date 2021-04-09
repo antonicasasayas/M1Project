@@ -1,10 +1,13 @@
 @font-face{
   font-family: glaive;
-  src: url(./fonts/Glaive\ Regular.otf)
+  src: url(/fonts/Glaive\ Regular.otf)
 }
 
 body {
-    background: black;
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    background-size: cover;
     overflow: hidden;
 }
 #canvas1 {
@@ -59,4 +62,8 @@ footer a{
   font-size: 100px;
   text-align: center;
   padding-top: 100px;
+}
+
+.lives {
+  height: 100vh;
 }

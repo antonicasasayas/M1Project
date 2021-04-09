@@ -1,4 +1,5 @@
 
+
 let chosenDefender = 1;
 const mouse = {
   x: 10,
@@ -74,8 +75,8 @@ class Game {
       this.enemies[i].draw();
 
       if (this.enemies[i].health <= 0) {
-        let gainedResources = Math.floor(this.enemies[i].maxHealth / 10);
-        this.numberOfResources += gainedResources*0.6;
+        let gainedResources = this.enemies[i].maxHealth / 10;
+        this.numberOfResources += Math.floor(gainedResources * 0.6);
 
         this.enemies.splice(i, 1);
         i--;
@@ -159,14 +160,28 @@ class Game {
   }
   handleDefenders() {
     for (let i = 0; i < this.defenders.length; i++) {
+      
       this.defenders[i].draw();
       this.defenders[i].update(this.projectiles);
-
       if (
         this.enemies.some((enemy) => {
           return (
-            this.defenders[i].x <= enemy.x &&
-            this.defenders[i].x + this.defenders[i].width >= enemy.x
+            this.defenders[i].x <= enemy.x+50 &&
+            this.defenders[i].x + this.defenders[i].width >= enemy.x && this.defenders[i].y < enemy.y
+          );
+        })
+      ) {
+        
+        this.defenders[i].down = true;
+      } else {
+        this.defenders[i].down = false;
+      }
+      
+      if (
+        this.enemies.some((enemy) => {
+          return (
+            this.defenders[i].x <= enemy.x+50 &&
+            this.defenders[i].x + this.defenders[i].width >= enemy.x && this.defenders[i].y > enemy.y
           );
         })
       ) {
@@ -199,18 +214,7 @@ class Game {
       } else {
         this.defenders[i].left = false;
       }
-      if (
-        this.enemies.some((enemy) => {
-          return (
-            this.defenders[i].x >= enemy.x &&
-            this.defenders[i].x + this.defenders[i].width <= enemy.x
-          );
-        })
-      ) {
-        this.defenders[i].down = true;
-      } else {
-        this.defenders[i].down = false;
-      }
+      
     }
   }
 
@@ -223,7 +227,9 @@ class Game {
     this.player = new Player();
     let canvasPosition = this.canvas.getBoundingClientRect();
     this.canvas.addEventListener("mousemove", function (e) {
+      
       mouse.x = e.x - canvasPosition.left;
+      
       mouse.y = e.y - canvasPosition.top;
     });
     this.canvas.addEventListener("mouseleave", function () {
@@ -271,6 +277,7 @@ class Game {
         removeGameScreen();
         createGameOverScreen();
       }
+      
       this.frame++;
       if (!this.gameOver) requestAnimationFrame(loop);
     };
