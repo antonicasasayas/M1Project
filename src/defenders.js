@@ -20,14 +20,18 @@ class Projectile {
     this.width = 40;
     this.height = 40;
     if (chosenDefender === 1) {
-      this.power = 25; 
+      this.power = 25;
+      this.speed = 5;
     } else if (chosenDefender === 2) {
       this.power = 4
+      this.speed = 10;
     } else if (chosenDefender === 3) {
       this.power = 80
+      this.speed = 4;
     } else if (chosenDefender === 4) {
       this.power = 120
-    } this.speed = 5;
+      this.speed = 4;
+    } 
     this.direction = direction;
     this.chosenDefender = chosenDefender;
   }
