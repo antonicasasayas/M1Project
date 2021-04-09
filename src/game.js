@@ -10,7 +10,7 @@ const mouse = {
 window.addEventListener("mousedown", () => {
   mouse.clicked = true;
 });
-console.log(mouse.x)
+
 window.addEventListener("mouseup", function () {
   mouse.clicked = false;
 });
@@ -56,34 +56,7 @@ class Game {
     }
   }
   
-  /*chooseDefender() {
-    ctx.lineWidth = 1;
-
-    if (collision(mouse, card1) && mouse.clicked === true) {
-      this.this.chosenDefender = 1;
-      ctx.drawImage(chosenImage, 110, 507, 85, 75);
-    } else if (collision(mouse, card2) && mouse.clicked === true) {
-      this.chosenDefender = 2;
-      ctx.drawImage(chosenImage, 295, 507, 85, 75);
-    } else if (collision(mouse, card3) && mouse.clicked === true) {
-      this.chosenDefender = 3;
-      ctx.drawImage(chosenImage, 487, 507, 85, 75);
-    } else if (collision(mouse, card4) && mouse.clicked === true) {
-      this.chosenDefender = 4;
-      ctx.drawImage(chosenImage, 675, 507, 85, 75);
-    }
-
-    if (this.chosenDefender === 1) {
-      ctx.drawImage(chosenImage, 110, 507, 85, 75);
-    } else if (this.chosenDefender === 2) {
-      ctx.drawImage(chosenImage, 295, 507, 85, 75);
-    } else if (this.chosenDefender === 3) {
-      ctx.drawImage(chosenImage, 487, 507, 85, 75);
-    } else if (this.chosenDefender === 4) {
-      ctx.drawImage(chosenImage, 675, 507, 85, 75);
-    }
-  }*/
-
+  
   handleGameStatus() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Orbitron";
@@ -102,7 +75,7 @@ class Game {
 
       if (this.enemies[i].health <= 0) {
         let gainedResources = Math.floor(this.enemies[i].maxHealth / 10);
-        this.numberOfResources += gainedResources;
+        this.numberOfResources += gainedResources*0.6;
 
         this.enemies.splice(i, 1);
         i--;
@@ -214,6 +187,30 @@ class Game {
       } else {
         this.defenders[i].shooting = false;
       }
+
+
+      if (this.enemies.some((enemy) => {
+        return (
+          this.defenders[i].y >= enemy.y && this.defenders[i].y + this.defenders[i].height <= enemy.y
+        );
+      })
+      ){
+        this.defenders[i].left = true;
+      } else {
+        this.defenders[i].left = false;
+      }
+      if (
+        this.enemies.some((enemy) => {
+          return (
+            this.defenders[i].x >= enemy.x &&
+            this.defenders[i].x + this.defenders[i].width <= enemy.x
+          );
+        })
+      ) {
+        this.defenders[i].down = true;
+      } else {
+        this.defenders[i].down = false;
+      }
     }
   }
 
@@ -246,7 +243,7 @@ class Game {
       }
       let defenderCost = 100 * this.chosenDefender;
       if (this.numberOfResources >= defenderCost && mouse.y < 500) {
-        console.log(mouse.x, mouse.y)
+        
         if (!(mouse.y < 400 && mouse.x >= 750 && mouse.x <= 850)) {
            this.defenders.push(
              new Defender(this.canvas, gridPositionX, gridPositionY, this.chosenDefender)
@@ -269,7 +266,11 @@ class Game {
       this.handleEnemies();
       this.chooseDefender();
       this.handleGameStatus();
-      
+      if (this.player.lives <= 0) {
+        this.gameOver = true;
+        removeGameScreen();
+        createGameOverScreen();
+      }
       this.frame++;
       if (!this.gameOver) requestAnimationFrame(loop);
     };

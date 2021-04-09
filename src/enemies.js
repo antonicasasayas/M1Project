@@ -25,22 +25,22 @@ class Enemy {
     
       this.enemyType = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
       if (this.enemyType === enemyTypes[0]) {
-        this.health = 150+0.01*frame;
+        this.health = 150+0.02*frame;
         this.spriteWidth = 377;
         this.spriteHeight = 404;
         this.speed =  0.8;
       } else if (this.enemyType === enemyTypes[1]) {
-        this.health = 200+0.01*frame;
+        this.health = 200+0.02*frame;
         this.spriteWidth = 445;
         this.spriteHeight = 469;
         this.speed = 0.6;
       } else if (this.enemyType === enemyTypes[2]) {
-        this.health = 250+0.01*frame;
+        this.health = 250+0.02*frame;
         this.spriteWidth = 396;
         this.spriteHeight = 406;
         this.speed = 0.4;
       } else {
-        this.health = 100+0.01*frame;
+        this.health = 100+0.02*frame;
         this.spriteWidth = 292;
         this.spriteHeight = 248;
         this.speed = 1;
@@ -69,13 +69,13 @@ class Enemy {
     else if (this.x > 225 && this.y < 50) {
       this.x -= this.movement;
     } //  y = 50-200 x = 250
-    else if (this.x > 200 && this.x < 250 && this.y < 200) {
+    else if (this.x > 200 && this.x < 250 && this.y < 220) {
       this.y += this.movement;
     } // y = 200 x = 250-75
     else if (this.y > 200 && this.y < 250 && this.x > 75) {
       this.x -= this.movement;
     } // y = 200-350 x =75
-    else if (this.x > 25 && this.x < 100 && this.y < 350) {
+    else if (this.x > 25 && this.x < 100 && this.y < 375) {
       this.y += this.movement;
     } // y = 352 x = 75-0
     else if (this.y > 350 && this.x < 200) {

@@ -1,6 +1,6 @@
 @font-face{
   font-family: glaive;
-  src: url(/fonts/FontsFree-Net-GlaiveRegular.ttf)
+  src: url(./fonts/Glaive\ Regular.otf)
 }
 
 body {
@@ -49,10 +49,14 @@ footer a{
 
 .pablo{
   background-image: url(./images/button_play.png);
-  
+  padding-left: 100px,
 
 }
 
 .pepe h1{
   font-family: glaive;
+  color: white;
+  font-size: 100px;
+  text-align: center;
+  padding-top: 100px;
 }
