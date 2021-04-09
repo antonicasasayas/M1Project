@@ -20,7 +20,7 @@ function createSplashScreen() {
   //para un correcto tabulado del string, tabular de la línea 2 hasta el final
   splashScreen = buildDom(`
       <main class = "pepe">
-        <h1>InfernO ToweR DefensE</h1>
+        <h1>Inferno Tower Defense</h1>
         <button>Start</button>
       </main>
     `);
