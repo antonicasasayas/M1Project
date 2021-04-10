@@ -3,20 +3,18 @@ projectile1.src = "./images/arrow1.png";
 const projectile2 = new Image();
 projectile2.src = "./images/arrow4.png";
 const magicProjectile = new Image();
-magicProjectile.src = "./images/magicProjectile.png"
+magicProjectile.src = "./images/magicProjectile.png";
 const stoneProjectile = new Image();
-stoneProjectile.src = "./images/stoneProjectile (1).png"
+stoneProjectile.src = "./images/stoneProjectile (1).png";
 const fireProjectile = new Image();
-fireProjectile.src = "./images/fireProjectile.png"
+fireProjectile.src = "./images/fireProjectile.png";
 const projectile3 = new Image();
-projectile3.src = "./images/arrowDown.png"
+projectile3.src = "./images/arrowDown.png";
 
 class Projectile {
-  
   constructor(canvas, x, y, direction, chosenDefender) {
-    
     this.canvas = canvas;
-    this.ctx = this.canvas.getContext("2d")
+    this.ctx = this.canvas.getContext("2d");
     this.x = x;
     this.y = y;
     this.width = 40;
@@ -25,15 +23,15 @@ class Projectile {
       this.power = 25;
       this.speed = 5;
     } else if (chosenDefender === 2) {
-      this.power = 4
+      this.power = 4;
       this.speed = 10;
     } else if (chosenDefender === 3) {
-      this.power = 80
+      this.power = 80;
       this.speed = 4;
     } else if (chosenDefender === 4) {
-      this.power = 120
+      this.power = 120;
       this.speed = 4;
-    } 
+    }
     this.direction = direction;
     this.chosenDefender = chosenDefender;
   }
@@ -178,7 +176,7 @@ class Projectile {
         this.width,
         this.height
       );
-    } 
+    }
   }
 }
 
@@ -195,7 +193,7 @@ fireTower.src = "./images/Fire Tower.png";
 class Defender {
   constructor(canvas, x, y, chosenDefender) {
     this.canvas = canvas;
-    this.ctx = this.canvas.getContext("2d")
+    this.ctx = this.canvas.getContext("2d");
     this.x = x;
     this.y = y;
     this.width = 75 - 3 * 2;
@@ -205,6 +203,9 @@ class Defender {
     this.down = false;
     this.left = false;
     this.timer = 0;
+    this.timerRight = 0;
+    this.timerLeft = 0;
+    this.timerDown = 0;
     this.frameX = 0;
     this.frameY = 0;
     this.spriteWidth = 171;
@@ -223,68 +224,106 @@ class Defender {
     }
   }
   update(projectiles) {
-    
     if (this.vertical) {
-      if (!this.shooting && !this.down && !this.left) {
-        this.timer += 1;
-      }
+      this.timer++;
 
       if (this.timer % 50 === 0 && this.chosenDefender === 1) {
-        
         projectiles.push(
-          new Projectile(this.canvas, this.x, this.y + 50, "up", this.chosenDefender)
+          new Projectile(
+            this.canvas,
+            this.x,
+            this.y + 50,
+            "up",
+            this.chosenDefender
+          )
         );
       }
-    
+
       if (this.timer % 70 === 0 && this.chosenDefender === 3) {
         projectiles.push(
-          new Projectile(this.canvas, this.x, this.y + 50, "up", this.chosenDefender)
+          new Projectile(
+            this.canvas,
+            this.x,
+            this.y + 50,
+            "up",
+            this.chosenDefender
+          )
         );
       }
       if (this.timer % 100 === 0 && this.chosenDefender === 4) {
         projectiles.push(
-          new Projectile(this.canvas, this.x, this.y + 50, "up", this.chosenDefender)
+          new Projectile(
+            this.canvas,
+            this.x,
+            this.y + 50,
+            "up",
+            this.chosenDefender
+          )
         );
       }
-      
 
       if (this.timer % 20 === 0 && this.chosenDefender === 2) {
         projectiles.push(
-          new Projectile(this.canvas, this.x, this.y + 50, "up", this.chosenDefender)
+          new Projectile(
+            this.canvas,
+            this.x,
+            this.y + 50,
+            "up",
+            this.chosenDefender
+          )
         );
       }
     }
     if (this.shooting) {
-      if (!this.down && !this.vertical && !this.left) {
-        this.timer++;
+      this.timerRight++;
+      if (this.timerRight % 20 === 0 && this.chosenDefender === 2) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "right",
+            this.chosenDefender
+          )
+        );
       }
-        if (this.timer % 20 === 0 && this.chosenDefender === 2) {
-          projectiles.push(
-            new Projectile(this.canvas, this.x + 70, this.y + 50, "right", this.chosenDefender)
-          );
-        }
-        if (this.timer % 50 === 0 && this.chosenDefender === 1) {
-          projectiles.push(
-            new Projectile(this.canvas, this.x + 70, this.y + 50, "right", this.chosenDefender)
-          );
-        }
-        if (this.timer % 70 === 0 && this.chosenDefender === 3) {
-          projectiles.push(
-            new Projectile(this.canvas, this.x + 70, this.y + 50, "right", this.chosenDefender)
-          );
-        }
-        if (this.timer % 100 === 0 && this.chosenDefender === 4) {
-          projectiles.push(
-            new Projectile(this.canvas, this.x + 70, this.y + 50, "right", this.chosenDefender)
-          );
-        }
-      
+      if (this.timerRight % 50 === 0 && this.chosenDefender === 1) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "right",
+            this.chosenDefender
+          )
+        );
+      }
+      if (this.timerRight % 70 === 0 && this.chosenDefender === 3) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "right",
+            this.chosenDefender
+          )
+        );
+      }
+      if (this.timerRight % 100 === 0 && this.chosenDefender === 4) {
+        projectiles.push(
+          new Projectile(
+            this.canvas,
+            this.x + 70,
+            this.y + 50,
+            "right",
+            this.chosenDefender
+          )
+        );
+      }
     }
     if (this.down) {
-      if (!this.shooting && !this.vertical && !this.left) {
-        this.timer++;
-      }
-      if (this.timer % 20 === 0 && this.chosenDefender === 2) {
+      this.timerDown++;
+      if (this.timerDown % 20 === 0 && this.chosenDefender === 2) {
         projectiles.push(
           new Projectile(
             this.canvas,
@@ -295,29 +334,29 @@ class Defender {
           )
         );
       }
-      if (this.timer % 50 === 0 && this.chosenDefender === 1) {
+      if (this.timerDown % 50 === 0 && this.chosenDefender === 1) {
         projectiles.push(
           new Projectile(
             this.canvas,
-            this.x ,
+            this.x,
             this.y + 50,
             "down",
             this.chosenDefender
           )
         );
       }
-      if (this.timer % 70 === 0 && this.chosenDefender === 3) {
+      if (this.timerDown % 70 === 0 && this.chosenDefender === 3) {
         projectiles.push(
           new Projectile(
             this.canvas,
-            this.x -50,
+            this.x - 50,
             this.y + 50,
             "down",
             this.chosenDefender
           )
         );
       }
-      if (this.timer % 100 === 0 && this.chosenDefender === 4) {
+      if (this.timerDown % 100 === 0 && this.chosenDefender === 4) {
         projectiles.push(
           new Projectile(
             this.canvas,
@@ -330,11 +369,9 @@ class Defender {
       }
     }
     if (this.left) {
-      if (!this.shooting && !this.vertical && !this.down) {
-        this.timer++;
-      }
+      this.timerLeft++;
 
-      if (this.timer % 20 === 0 && this.chosenDefender === 2) {
+      if (this.timerLeft % 20 === 0 && this.chosenDefender === 2) {
         projectiles.push(
           new Projectile(
             this.canvas,
@@ -345,7 +382,7 @@ class Defender {
           )
         );
       }
-      if (this.timer % 50 === 0 && this.chosenDefender === 1) {
+      if (this.timerLeft % 50 === 0 && this.chosenDefender === 1) {
         projectiles.push(
           new Projectile(
             this.canvas,
@@ -356,7 +393,7 @@ class Defender {
           )
         );
       }
-      if (this.timer % 70 === 0 && this.chosenDefender === 3) {
+      if (this.timerLeft % 70 === 0 && this.chosenDefender === 3) {
         projectiles.push(
           new Projectile(
             this.canvas,
@@ -367,7 +404,7 @@ class Defender {
           )
         );
       }
-      if (this.timer % 100 === 0 && this.chosenDefender === 4) {
+      if (this.timerLeft % 100 === 0 && this.chosenDefender === 4) {
         projectiles.push(
           new Projectile(
             this.canvas,

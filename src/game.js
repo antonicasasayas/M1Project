@@ -278,6 +278,7 @@ class Game {
         createGameOverScreen();
       }
       
+      
       this.frame++;
       if (!this.gameOver) requestAnimationFrame(loop);
     };
